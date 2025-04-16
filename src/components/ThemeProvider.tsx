@@ -31,13 +31,21 @@ export const getDarkModeColor = (
 };
 
 export const getContrastText = (
-  backgroundColor: string, 
   lightText: string, 
   darkText: string,
   isDarkMode: boolean
 ): string => {
   return isDarkMode ? lightText : darkText;
 };
+
+// Extended colors interface that includes optional card property
+interface ExtendedColors extends Record<string, unknown> {
+  card?: string;
+  background: {
+    primary: string;
+    secondary: string;
+  };
+}
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // Check for saved theme preference or system preference
@@ -72,10 +80,17 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     }
     
     // Set CSS variables for use in CSS for components that don't use styled-components
-    document.documentElement.style.setProperty('--text-color', isDarkMode ? darkTheme.colors.text : lightTheme.colors.text);
-    document.documentElement.style.setProperty('--bg-color', isDarkMode ? darkTheme.colors.background : lightTheme.colors.background);
-    document.documentElement.style.setProperty('--card-color', isDarkMode ? darkTheme.colors.card : lightTheme.colors.card);
-    document.documentElement.style.setProperty('--border-color', isDarkMode ? darkTheme.colors.border : lightTheme.colors.border);
+    document.documentElement.style.setProperty('--text-color', isDarkMode ? darkTheme.colors.text.primary : lightTheme.colors.text.primary);
+    document.documentElement.style.setProperty('--bg-color', isDarkMode ? darkTheme.colors.background.primary : lightTheme.colors.background.primary);
+    
+    // Using a type-safe way to access possibly missing properties
+    const darkColors = darkTheme.colors as ExtendedColors;
+    const lightColors = lightTheme.colors as ExtendedColors;
+    const darkCardColor = darkColors.card || darkTheme.colors.background.secondary;
+    const lightCardColor = lightColors.card || lightTheme.colors.background.secondary;
+    document.documentElement.style.setProperty('--card-color', isDarkMode ? darkCardColor : lightCardColor);
+    
+    document.documentElement.style.setProperty('--border-color', isDarkMode ? darkTheme.colors.border.light : lightTheme.colors.border.light);
   }, [isDarkMode]);
 
   // Listen for system theme changes

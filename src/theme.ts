@@ -1,47 +1,164 @@
 import { DefaultTheme } from 'styled-components';
 
-// Define a minimal theme with color properties
-const createTheme = (isDark = false) => ({
+// Define a more complete theme structure that matches the DefaultTheme interface
+const createTheme = (isDark = false): DefaultTheme => ({
+  isDark, // Add isDark property directly to theme
   mode: isDark ? 'dark' : 'light',
-  isDark,
   colors: {
-    // Simplified color structure - just what we need
+    // Color properties with complete record types
     primary: {
-      500: isDark ? '#6C8AFF' : '#4E63E4'
+      50: isDark ? '#E3ECFF' : '#E6ECFF',
+      100: isDark ? '#B7CBFF' : '#C3D4FF',
+      200: isDark ? '#85A5FF' : '#9EB9FF',
+      300: isDark ? '#5382FF' : '#789EFF',
+      400: isDark ? '#2A66FF' : '#5683FF',
+      500: isDark ? '#104CFF' : '#3466FF',
+      600: isDark ? '#0E45F5' : '#2C5BF0',
+      700: isDark ? '#0C3BE4' : '#244AE0',
+      800: isDark ? '#0A31D4' : '#1C38D0',
+      900: isDark ? '#071FB4' : '#0C1BB0',
     },
     neutral: {
-      500: isDark ? '#808080' : '#ADB5BD'
+      50: isDark ? '#F0F0F0' : '#F9FAFB',
+      100: isDark ? '#E0E0E0' : '#F3F4F6',
+      200: isDark ? '#C2C2C2' : '#E5E7EB',
+      300: isDark ? '#A3A3A3' : '#D1D5DB',
+      400: isDark ? '#858585' : '#9CA3AF',
+      500: isDark ? '#666666' : '#6B7280',
+      600: isDark ? '#525252' : '#4B5563',
+      700: isDark ? '#3D3D3D' : '#374151',
+      800: isDark ? '#292929' : '#1F2937',
+      900: isDark ? '#141414' : '#111827',
     },
     success: {
-      500: isDark ? '#45E99C' : '#2ED381'
+      50: isDark ? '#EAFAEE' : '#ECFDF5',
+      100: isDark ? '#D1F4D9' : '#D1FAE5',
+      200: isDark ? '#A3EAB8' : '#A7F3D0',
+      300: isDark ? '#75DF98' : '#6EE7B7',
+      400: isDark ? '#47D478' : '#34D399',
+      500: isDark ? '#18C959' : '#10B981',
+      600: isDark ? '#13BB54' : '#059669',
+      700: isDark ? '#0EA846' : '#047857',
+      800: isDark ? '#0A9539' : '#065F46',
+      900: isDark ? '#057424' : '#064E3B',
     },
     warning: {
-      500: isDark ? '#FFD44F' : '#FFC107'
+      50: isDark ? '#FFFBE6' : '#FFFBEB',
+      100: isDark ? '#FFF8CC' : '#FEF3C7',
+      200: isDark ? '#FFF1A8' : '#FDE68A',
+      300: isDark ? '#FFEB85' : '#FCD34D',
+      400: isDark ? '#FFE566' : '#FBBF24',
+      500: isDark ? '#FFDD33' : '#F59E0B',
+      600: isDark ? '#FFD500' : '#D97706',
+      700: isDark ? '#E0BB00' : '#B45309',
+      800: isDark ? '#C1A100' : '#92400E',
+      900: isDark ? '#887300' : '#78350F',
     },
     danger: {
-      500: isDark ? '#FF6B5E' : '#F44336'
+      50: isDark ? '#FFF1F0' : '#FEF2F2',
+      100: isDark ? '#FFE0DE' : '#FEE2E2',
+      200: isDark ? '#FFCAC7' : '#FECACA',
+      300: isDark ? '#FFB4B0' : '#FCA5A5',
+      400: isDark ? '#FF9E99' : '#F87171',
+      500: isDark ? '#FF7B75' : '#EF4444',
+      600: isDark ? '#FF584F' : '#DC2626',
+      700: isDark ? '#FF382D' : '#B91C1C',
+      800: isDark ? '#FF1F12' : '#991B1B',
+      900: isDark ? '#E0180C' : '#7F1D1D',
     },
-    info: {
-      500: isDark ? '#47B0F5' : '#0288D1'
+    purple: {
+      50: isDark ? '#F6F0FF' : '#F5F3FF',
+      500: isDark ? '#9061F9' : '#8B5CF6',
+      900: isDark ? '#4A1FB8' : '#4C1D95',
     },
-    background: isDark ? '#121212' : '#FFFFFF',
-    border: isDark ? '#3A3A3A' : '#E0E0E0',
-    text: isDark ? '#F5F5F5' : '#1A1A1A',
+    accent: {
+      primary: isDark ? '#6C8AFF' : '#4E63E4',
+      secondary: isDark ? '#45E99C' : '#2ED381',
+    },
+    text: {
+      primary: isDark ? '#F5F5F5' : '#1A1A1A',
+      secondary: isDark ? '#B0B0B0' : '#4A4A4A',
+      tertiary: isDark ? '#7E7E7E' : '#717171',
+      inverse: isDark ? '#1A1A1A' : '#F5F5F5',
+      white: '#FFFFFF',
+    },
+    background: {
+      primary: isDark ? '#121212' : '#FFFFFF',
+      secondary: isDark ? '#1E1E1E' : '#F9F9F9',
+      tertiary: isDark ? '#2A2A2A' : '#F1F1F1',
+      lighter: isDark ? '#333333' : '#FCFCFC',
+      light: isDark ? '#2C2C2C' : '#F5F5F5',
+      hover: isDark ? '#242424' : '#EFEFEF',
+    },
+    border: {
+      light: isDark ? '#3A3A3A' : '#E0E0E0',
+      lighter: isDark ? '#2C2C2C' : '#F0F0F0',
+      dark: isDark ? '#4A4A4A' : '#C0C0C0',
+    },
+    sidebar: {
+      background: isDark ? '#0F0F0F' : '#FFFFFF',
+      hover: isDark ? '#1A1A1A' : '#F5F5F5',
+      active: isDark ? '#202020' : '#E5E5E5',
+    },
   },
+  spacing: Object.assign([0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96], {
+    '0': '0',
+    '1': '4px',
+    '2': '8px',
+    '3': '12px',
+    '4': '16px',
+    '5': '20px',
+    '6': '24px',
+    '8': '32px',
+    '10': '40px',
+    '12': '48px',
+    '16': '64px',
+    '20': '80px',
+    '24': '96px',
+  }),
   borderRadius: {
     sm: '4px',
     md: '8px',
     lg: '12px',
+    xl: '16px',
+    '2xl': '24px',
+    full: '9999px',
   },
-  spacing: {
-    4: '16px',
+  shadows: {
+    sm: isDark ? '0 1px 2px 0 rgba(0, 0, 0, 0.5)' : '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    md: isDark ? '0 4px 6px -1px rgba(0, 0, 0, 0.6)' : '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+    lg: isDark ? '0 10px 15px -3px rgba(0, 0, 0, 0.7)' : '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+    xl: isDark ? '0 20px 25px -5px rgba(0, 0, 0, 0.8)' : '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+  },
+  zIndices: {
+    hide: -1,
+    auto: 'auto',
+    base: 0,
+    docked: 10,
+    dropdown: 1000,
+    sticky: 1100,
+    banner: 1200,
+    overlay: 1300,
+    modal: 1400,
+    popover: 1500,
+    skipLink: 1600,
+    toast: 1700,
+    tooltip: 1800,
+  },
+  transition: {
+    fast: '0.1s ease-in-out',
+    normal: '0.2s ease-in-out',
+    slow: '0.3s ease-in-out',
+  },
+  breakpoints: {
+    xs: '320px',
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+    '2xl': '1536px',
   },
 });
 
-// Export themes with double type assertion to completely bypass type issues
-// @ts-ignore - We know our theme structure is different but components will use it correctly
-export const lightTheme = createTheme(false) as unknown as DefaultTheme;
-// @ts-ignore - We know our theme structure is different but components will use it correctly
-export const darkTheme = createTheme(true) as unknown as DefaultTheme;
-
-// Delete the conflicting interface extension 
+export const lightTheme = createTheme(false);
+export const darkTheme = createTheme(true); 

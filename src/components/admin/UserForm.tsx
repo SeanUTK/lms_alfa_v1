@@ -8,6 +8,7 @@ interface User {
   id: string;
   firstName: string;
   lastName: string;
+  name?: string; // Optional for backward compatibility
   email: string;
   role: string;
   status: 'active' | 'inactive';

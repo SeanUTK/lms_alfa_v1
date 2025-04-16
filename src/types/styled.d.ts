@@ -2,6 +2,8 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    isDark: boolean;
+    mode: string;
     colors: {
       primary: Record<number, string>;
       neutral: Record<number, string>;
@@ -9,12 +11,17 @@ declare module 'styled-components' {
       warning: Record<number, string>;
       danger: Record<number, string>;
       purple: Record<number, string>;
-      accent: Record<string, string>;
+      accent: {
+        primary: string;
+        secondary: string;
+        red?: string;
+      };
       text: {
         primary: string;
         secondary: string;
         tertiary: string;
         inverse: string;
+        white: string;
       };
       background: {
         primary: string;
@@ -29,8 +36,17 @@ declare module 'styled-components' {
         lighter: string;
         dark: string;
       };
+      card: string;
+      cardSecondary: string;
+      textSecondary: string;
+      textTertiary: string;
+      sidebar: {
+        background: string;
+        hover: string;
+        active: string;
+      };
     };
-    spacing: Record<string | number, string> & number[];
+    spacing: unknown;
     borderRadius: {
       sm: string;
       md: string;

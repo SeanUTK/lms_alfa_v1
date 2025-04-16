@@ -5,7 +5,9 @@ import { User } from '../types/User';
 const mockUsers: User[] = [
   {
     id: '1',
-    name: 'John Doe',
+    firstName: 'John',
+    lastName: 'Doe',
+    name: 'John Doe', // kept for backward compatibility
     email: 'john.doe@example.com',
     role: 'Admin',
     status: 'active',
@@ -14,6 +16,8 @@ const mockUsers: User[] = [
   },
   {
     id: '2',
+    firstName: 'Jane',
+    lastName: 'Smith',
     name: 'Jane Smith',
     email: 'jane.smith@example.com',
     role: 'Teacher',
@@ -23,6 +27,8 @@ const mockUsers: User[] = [
   },
   {
     id: '3',
+    firstName: 'Robert',
+    lastName: 'Johnson',
     name: 'Robert Johnson',
     email: 'robert.johnson@example.com',
     role: 'Teacher',
@@ -32,6 +38,8 @@ const mockUsers: User[] = [
   },
   {
     id: '4',
+    firstName: 'Emily',
+    lastName: 'Davis',
     name: 'Emily Davis',
     email: 'emily.davis@example.com',
     role: 'Student',
@@ -41,6 +49,8 @@ const mockUsers: User[] = [
   },
   {
     id: '5',
+    firstName: 'Michael',
+    lastName: 'Wilson',
     name: 'Michael Wilson',
     email: 'michael.wilson@example.com',
     role: 'Student',
@@ -50,6 +60,8 @@ const mockUsers: User[] = [
   },
   {
     id: '6',
+    firstName: 'Sarah',
+    lastName: 'Brown',
     name: 'Sarah Brown',
     email: 'sarah.brown@example.com',
     role: 'Parent',
@@ -59,6 +71,8 @@ const mockUsers: User[] = [
   },
   {
     id: '7',
+    firstName: 'David',
+    lastName: 'Miller',
     name: 'David Miller',
     email: 'david.miller@example.com',
     role: 'Admin',

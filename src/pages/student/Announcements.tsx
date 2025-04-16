@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiBell, FiCalendar, FiFilter, FiChevronDown, FiX, FiSearch, FiExternalLink } from 'react-icons/fi';
-import { useAuth } from '../../contexts/AuthContext';
 
 interface Announcement {
   id: number;
@@ -31,7 +30,6 @@ const Announcements: React.FC = () => {
     priority: [],
     readStatus: []
   });
-  const { user } = useAuth();
 
   // Mock announcements data
   const announcements: Announcement[] = [

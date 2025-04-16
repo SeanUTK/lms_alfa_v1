@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { FiSearch, FiFilter, FiSliders, FiPlus, FiBook, FiUsers, FiCalendar, FiBarChart2, FiMoreVertical, FiEye, FiEdit, FiTrash2, FiCheckCircle, FiChevronRight, FiArrowLeft } from 'react-icons/fi';
+// import { useNavigate } from 'react-router-dom';
+import { FiSearch, FiFilter, FiSliders, FiPlus, FiBook, FiUsers, FiCalendar, FiMoreVertical, FiEye, FiEdit, FiTrash2, FiChevronRight, FiArrowLeft } from 'react-icons/fi';
 
 // Student interface
 interface Student {
@@ -38,7 +38,7 @@ interface Course {
 }
 
 const TeacherCourses: React.FC = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
@@ -51,7 +51,7 @@ const TeacherCourses: React.FC = () => {
   const [view, setView] = useState<'courses' | 'classes' | 'students'>('courses');
 
   // Mock data for courses, classes, and students
-  const [courses, setCourses] = useState<Course[]>([
+  const [courses, /* setCourses */] = useState<Course[]>([
     {
       id: '1',
       name: 'Mathematics',
@@ -1072,9 +1072,9 @@ const StatIcon = styled.div<StatIconProps>`
   height: 28px;
   border-radius: 50%;
   background-color: ${props => {
-    if (props.$type === 'students') return props.theme.mode === 'dark' ? props.theme.colors.primary[800] : props.theme.colors.primary[100];
-    if (props.$type === 'classes') return props.theme.mode === 'dark' ? props.theme.colors.warning[800] : props.theme.colors.warning[100];
-    return props.theme.mode === 'dark' ? props.theme.colors.success[800] : props.theme.colors.success[100];
+    if (props.$type === 'students') return props.theme.isDark ? props.theme.colors.primary[800] : props.theme.colors.primary[100];
+    if (props.$type === 'classes') return props.theme.isDark ? props.theme.colors.warning[800] : props.theme.colors.warning[100];
+    return props.theme.isDark ? props.theme.colors.success[800] : props.theme.colors.success[100];
   }};
   color: ${props => {
     if (props.$type === 'students') return props.theme.colors.primary[500];
@@ -1094,7 +1094,7 @@ const ViewCourseButton = styled.button`
   justify-content: space-between;
   width: 100%;
   padding: 0.75rem 1rem;
-  background-color: ${props => props.theme.mode === 'dark' ? props.theme.colors.primary[800] : props.theme.colors.background.tertiary};
+  background-color: ${props => props.theme.isDark ? props.theme.colors.primary[800] : props.theme.colors.background.tertiary};
   color: ${props => props.theme.colors.primary[500]};
   border: none;
   border-radius: ${props => props.theme.borderRadius.md};
@@ -1104,7 +1104,7 @@ const ViewCourseButton = styled.button`
   transition: all 0.2s ease;
   
   &:hover {
-    background-color: ${props => props.theme.mode === 'dark' ? props.theme.colors.primary[700] : props.theme.colors.primary[50]};
+    background-color: ${props => props.theme.isDark ? props.theme.colors.primary[700] : props.theme.colors.primary[50]};
   }
 `;
 
@@ -1135,7 +1135,7 @@ const ClassCard = styled.div`
 const ClassCardHeader = styled.div`
   padding: 1.25rem;
   background-color: ${props => props.theme.colors.primary[600]};
-  color: ${props => props.theme.mode === 'dark' ? props.theme.colors.text.white : 'white'};
+  color: white;
 `;
 
 const ClassTitle = styled.h3`
@@ -1173,8 +1173,8 @@ const InfoIcon = styled.div`
   width: 32px;
   height: 32px;
   border-radius: ${props => props.theme.borderRadius.md};
-  background-color: ${props => props.theme.mode === 'dark' ? props.theme.colors.background.secondary : props.theme.colors.background.tertiary};
-  color: ${props => props.theme.mode === 'dark' ? props.theme.colors.text.secondary : props.theme.colors.text.secondary};
+  background-color: ${props => props.theme.isDark ? props.theme.colors.background.secondary : props.theme.colors.background.tertiary};
+  color: ${props => props.theme.isDark ? props.theme.colors.text.secondary : props.theme.colors.text.secondary};
 `;
 
 const InfoText = styled.div`
@@ -1199,7 +1199,7 @@ const ProgressLabel = styled.div`
 const ProgressBar = styled.div`
   height: 6px;
   width: 100%;
-  background-color: ${props => props.theme.mode === 'dark' ? props.theme.colors.background.secondary : props.theme.colors.background.tertiary};
+  background-color: ${props => props.theme.isDark ? props.theme.colors.background.secondary : props.theme.colors.background.tertiary};
   border-radius: ${props => props.theme.borderRadius.full};
   overflow: hidden;
   margin-bottom: 0.5rem;
@@ -1213,9 +1213,9 @@ const ProgressFill = styled.div<ProgressFillProps>`
   height: 100%;
   width: ${props => props.$percentage}%;
   background-color: ${props => {
-    if (props.$percentage >= 80) return props.theme.mode === 'dark' ? props.theme.colors.success[400] : props.theme.colors.success[500];
-    if (props.$percentage >= 40) return props.theme.mode === 'dark' ? props.theme.colors.warning[400] : props.theme.colors.warning[500];
-    return props.theme.mode === 'dark' ? props.theme.colors.danger[400] : props.theme.colors.danger[500];
+    if (props.$percentage >= 80) return props.theme.isDark ? props.theme.colors.success[400] : props.theme.colors.success[500];
+    if (props.$percentage >= 40) return props.theme.isDark ? props.theme.colors.warning[400] : props.theme.colors.warning[500];
+    return props.theme.isDark ? props.theme.colors.danger[400] : props.theme.colors.danger[500];
   }};
   border-radius: ${props => props.theme.borderRadius.full};
   transition: width 0.3s ease;
@@ -1245,7 +1245,7 @@ const StudentsTable = styled.table`
 
 const TableRow = styled.tr`
   &:hover td {
-    background-color: ${props => props.theme.mode === 'dark' ? props.theme.colors.background.secondary : props.theme.colors.background.tertiary};
+    background-color: ${props => props.theme.isDark ? props.theme.colors.background.secondary : props.theme.colors.background.tertiary};
   }
 `;
 
@@ -1256,7 +1256,7 @@ const TableHeader = styled.th`
   font-weight: 600;
   color: ${props => props.theme.colors.text.primary};
   border-bottom: 1px solid ${props => props.theme.colors.border.light};
-  background-color: ${props => props.theme.mode === 'dark' ? props.theme.colors.background.secondary : props.theme.colors.background.tertiary};
+  background-color: ${props => props.theme.isDark ? props.theme.colors.background.secondary : props.theme.colors.background.tertiary};
 `;
 
 const TableCell = styled.td`
@@ -1296,14 +1296,14 @@ const AttendanceCell = styled.div<MetricCellProps>`
   font-size: 0.75rem;
   display: inline-block;
   background-color: ${props => {
-    if (props.$value >= 90) return props.theme.mode === 'dark' ? props.theme.colors.success[900] : props.theme.colors.success[100];
-    if (props.$value >= 75) return props.theme.mode === 'dark' ? props.theme.colors.warning[900] : props.theme.colors.warning[100];
-    return props.theme.mode === 'dark' ? props.theme.colors.danger[900] : props.theme.colors.danger[100];
+    if (props.$value >= 90) return props.theme.isDark ? props.theme.colors.success[900] : props.theme.colors.success[100];
+    if (props.$value >= 75) return props.theme.isDark ? props.theme.colors.warning[900] : props.theme.colors.warning[100];
+    return props.theme.isDark ? props.theme.colors.danger[900] : props.theme.colors.danger[100];
   }};
   color: ${props => {
-    if (props.$value >= 90) return props.theme.mode === 'dark' ? props.theme.colors.success[300] : props.theme.colors.success[700];
-    if (props.$value >= 75) return props.theme.mode === 'dark' ? props.theme.colors.warning[300] : props.theme.colors.warning[700];
-    return props.theme.mode === 'dark' ? props.theme.colors.danger[300] : props.theme.colors.danger[700];
+    if (props.$value >= 90) return props.theme.isDark ? props.theme.colors.success[300] : props.theme.colors.success[700];
+    if (props.$value >= 75) return props.theme.isDark ? props.theme.colors.warning[300] : props.theme.colors.warning[700];
+    return props.theme.isDark ? props.theme.colors.danger[300] : props.theme.colors.danger[700];
   }};
 `;
 
@@ -1321,8 +1321,8 @@ const ActionIconButton = styled.button`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: ${props => props.theme.mode === 'dark' ? props.theme.colors.background.secondary : props.theme.colors.background.tertiary};
-  color: ${props => props.theme.mode === 'dark' ? props.theme.colors.text.primary : props.theme.colors.text.secondary};
+  background-color: ${props => props.theme.isDark ? props.theme.colors.background.secondary : props.theme.colors.background.tertiary};
+  color: ${props => props.theme.isDark ? props.theme.colors.text.primary : props.theme.colors.text.secondary};
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
